@@ -42,12 +42,21 @@ export default ({ data: bills, loading, error }) => {
     </div>
   `)
 
+  const sortByDateProperty = (a,b) => a.date < b.date ? 1 : -1;
+  let billsSortedByDate;
+  
+  // console.log('bills:', bills)
+  if(typeof bills !== 'undefined'){
+    billsSortedByDate = bills.sort(sortByDateProperty);
+  }
+  // console.log('billsSortedByDate:', billsSortedByDate)
   if (loading) {
     return LoadingPage()
   } else if (error) {
     return ErrorPage(error)
   }
-  
+
+
   return (`
     <div class='layout'>
       ${VerticalLayout(120)}
@@ -66,10 +75,10 @@ export default ({ data: bills, loading, error }) => {
                 <th>Montant</th>
                 <th>Statut</th>
                 <th>Actions</th>
-              </tr>
+              </tr>-
           </thead>
           <tbody data-testid="tbody">
-            ${rows(bills)}
+            ${rows(billsSortedByDate || bills)}
           </tbody>
           </table>
         </div>

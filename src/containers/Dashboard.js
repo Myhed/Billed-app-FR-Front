@@ -53,7 +53,8 @@ export const card = (bill) => {
 }
 
 export const cards = (bills) => {
-  return bills && bills.length ? bills.map(bill => card(bill)).join("") : ""
+  return bills && bills.length ? bills
+  .map(bill => card(bill)).join("") : ""
 }
 
 export const getStatus = (index) => {
