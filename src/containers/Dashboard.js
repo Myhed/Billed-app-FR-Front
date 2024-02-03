@@ -86,7 +86,8 @@ export default class {
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
-  handleEditTicket(e, bill, bills) {
+  handleEditTicket(e, bill ,bills) {
+    e.stopImmediatePropagation()
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
     if (this.counter % 2 === 0) {
@@ -95,6 +96,7 @@ export default class {
       })
       $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
+      // console.log('je suis la');
       $('.vertical-navbar').css({ height: '150vh' })
       this.counter ++
     } else {
@@ -145,9 +147,13 @@ export default class {
         .html("")
       this.counter ++
     }
-
+    // console.log('bills: ',bills)
+    console.log('counter main:', this.counter);
+    const currentBill = $(`#status-bills-container${index} > [id^=open]`)[0]
+    // currentBill.addEventListener('click',(e) => {e.stopPropagation(),this.handleEditTicket(e, currentBill , bills)}, true)
     bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      // console.log(bill);
+      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill , bills))
     })
 
     return bills

@@ -111,20 +111,6 @@ describe("Given I am connected as an employee", () => {
       expect(create).toHaveBeenCalledWith(create.mock.calls[0][0]);
     })
 
-  
-    // test('Then i choose one of these types of files png,jpg,jpeg it should return the object file', async () => {
-    //   const expectedResult = {lastModified: 1676131169507,
-    //     name: "58281349.png",
-    //     size: 310551,
-    //     type: "image/png",
-    //     webkitRelativePath: ""}
-    //     newBill = new NewBill({document, onNavigate, store: null, localStorage: window.localStorage});
-    //     const res = await newBill.verifyTypeFile(expectedResult)
-    //     expect(res).toEqual(expectedResult);
-    // })
-
-   
-
     test('Then file change failed for any reasons', async () => {
       const file = screen.getByTestId('file');
       const expectedError = new Error('Error occured on the server')
